@@ -1,0 +1,6 @@
+.arcgis-question .search select{
+    opacity:0.3;
+}
+.arcgis-question .search label:after{
+  content: url('ajax-loader.gif');
+}

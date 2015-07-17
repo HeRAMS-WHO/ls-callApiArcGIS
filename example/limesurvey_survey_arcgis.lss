@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+ <LimeSurveyDocType>Survey</LimeSurveyDocType>
+ <DBVersion>178</DBVersion>
+ <languages>
+  <language>ar</language>
+  <language>en</language>
+ </languages>
+ <defaultvalues>
+  <fields>
+   <fieldname>qid</fieldname>
+   <fieldname>scale_id</fieldname>
+   <fieldname>sqid</fieldname>
+   <fieldname>language</fieldname>
+   <fieldname>specialtype</fieldname>
+   <fieldname>defaultvalue</fieldname>
+  </fields>
+  <rows>
+   <row>
+    <qid><![CDATA[15]]></qid>
+    <scale_id><![CDATA[0]]></scale_id>
+    <sqid><![CDATA[16]]></sqid>
+    <language><![CDATA[en]]></language>
+    <specialtype/>
+    <defaultvalue><![CDATA[SY12]]></defaultvalue>
+   </row>
+   <row>
+    <qid><![CDATA[15]]></qid>
+    <scale_id><![CDATA[0]]></scale_id>
+    <sqid><![CDATA[16]]></sqid>
+    <language><![CDATA[ar]]></language>
+    <specialtype/>
+    <defaultvalue><![CDATA[SY12]]></defaultvalue>
+   </row>
+  </rows>
+ </defaultvalues>
+ <groups>
+  <fields>
+   <fieldname>gid</fieldname>
+   <fieldname>sid</fieldname>
+   <fieldname>group_name</fieldname>
+   <fieldname>group_order</fieldname>
+   <fieldname>description</fieldname>
+   <fieldname>language</fieldname>
+   <fieldname>randomization_group</fieldname>
+   <fieldname>grelevance</fieldname>
+  </fields>
+  <rows>
+   <row>
+    <gid><![CDATA[8]]></gid>
+    <sid><![CDATA[447792]]></sid>
+    <group_name><![CDATA[Argis question]]></group_name>
+    <group_order><![CDATA[3]]></group_order>
+    <description/>
+    <language><![CDATA[en]]></language>
+    <randomization_group/>
+    <grelevance/>
+   </row>
+   <row>
+    <gid><![CDATA[8]]></gid>
+    <sid><![CDATA[447792]]></sid>
+    <group_name><![CDATA[Argis question]]></group_name>
+    <group_order><![CDATA[3]]></group_order>
+    <description/>
+    <language><![CDATA[ar]]></language>
+    <randomization_group/>
+    <grelevance/>
+   </row>
+  </rows>
+ </groups>
+ <questions>
+  <fields>
+   <fieldname>qid</fieldname>
+   <fieldname>parent_qid</fieldname>
+   <fieldname>sid</fieldname>
+   <fieldname>gid</fieldname>
+   <fieldname>type</fieldname>
+   <fieldname>title</fieldname>
+   <fieldname>question</fieldname>
+   <fieldname>preg</fieldname>
+   <fieldname>help</fieldname>
+   <fieldname>other</fieldname>
+   <fieldname>mandatory</fieldname>
+   <fieldname>question_order</fieldname>
+   <fieldname>language</fieldname>
+   <fieldname>scale_id</fieldname>
+   <fieldname>same_default</fieldname>
+   <fieldname>relevance</fieldname>
+  </fields>
+  <rows>
+   <row>
+    <qid><![CDATA[15]]></qid>
+    <parent_qid><![CDATA[0]]></parent_qid>
+    <sid><![CDATA[447792]]></sid>
+    <gid><![CDATA[8]]></gid>
+    <type><![CDATA[Q]]></type>
+    <title><![CDATA[arcgis]]></title>
+    <question><![CDATA[Arcgis automatic question]]></question>
+    <preg/>
+    <help/>
+    <other><![CDATA[N]]></other>
+    <mandatory><![CDATA[Y]]></mandatory>
+    <question_order><![CDATA[1]]></question_order>
+    <language><![CDATA[en]]></language>
+    <scale_id><![CDATA[0]]></scale_id>
+    <same_default><![CDATA[0]]></same_default>
+    <relevance><![CDATA[1]]></relevance>
+   </row>
+   <row>
+    <qid><![CDATA[15]]></qid>
+    <parent_qid><![CDATA[0]]></parent_qid>
+    <sid><![CDATA[447792]]></sid>
+    <gid><![CDATA[8]]></gid>
+    <type><![CDATA[Q]]></type>
+    <title><![CDATA[arcgis]]></title>
+    <question><![CDATA[Arcgis automatic question]]></question>
+    <preg/>
+    <help/>
+    <other><![CDATA[N]]></other>
+    <mandatory><![CDATA[Y]]></mandatory>
+    <question_order><![CDATA[1]]></question_order>
+    <language><![CDATA[ar]]></language>
+    <scale_id><![CDATA[0]]></scale_id>
+    <same_default><![CDATA[0]]></same_default>
+    <relevance><![CDATA[1]]></relevance>
+   </row>
+  </rows>
+ </questions>
+ <subquestions>
+  <fields>
+   <fieldname>qid</fieldname>
+   <fieldname>parent_qid</fieldname>
+   <fieldname>sid</fieldname>
+   <fieldname>gid</fieldname>
+   <fieldname>type</fieldname>
+   <fieldname>title</fieldname>
+   <fieldname>question</fieldname>
+   <fieldname>preg</fieldname>
+   <fieldname>help</fieldname>
+   <fieldname>other</fieldname>
+   <fieldname>mandatory</fieldname>
+   <fieldname>question_order</fieldname>
+   <fieldname>language</fieldname>
+   <fieldname>scale_id</fieldname>
+   <fieldname>same_default</fieldname>
+   <fieldname>relevance</fieldname>
+  </fields>
+  <rows>
+   <row>
+    <qid><![CDATA[16]]></qid>
+    <parent_qid><![CDATA[15]]></parent_qid>
+    <sid><![CDATA[447792]]></sid>
+    <gid><![CDATA[8]]></gid>
+    <type><![CDATA[T]]></type>
+    <title><![CDATA[admin1]]></title>
+    <question><![CDATA[Admin 1]]></question>
+    <other><![CDATA[N]]></other>
+    <question_order><![CDATA[1]]></question_order>
+    <language><![CDATA[en]]></language>
+    <scale_id><![CDATA[0]]></scale_id>
+    <same_default><![CDATA[0]]></same_default>
+   </row>
+   <row>
+    <qid><![CDATA[16]]></qid>
+    <parent_qid><![CDATA[15]]></parent_qid>
+    <sid><![CDATA[447792]]></sid>
+    <gid><![CDATA[8]]></gid>
+    <type><![CDATA[T]]></type>
+    <title><![CDATA[admin1]]></title>
+    <question><![CDATA[Admin 1]]></question>
+    <other><![CDATA[N]]></other>
+    <question_order><![CDATA[1]]></question_order>
+    <language><![CDATA[ar]]></language>
+    <scale_id><![CDATA[0]]></scale_id>
+    <same_default><![CDATA[0]]></same_default>
+   </row>
+   <row>
+    <qid><![CDATA[17]]></qid>
+    <parent_qid><![CDATA[15]]></parent_qid>
+    <sid><![CDATA[447792]]></sid>
+    <gid><![CDATA[8]]></gid>
+    <type><![CDATA[T]]></type>
+    <title><![CDATA[admin2]]></title>
+    <question><![CDATA[Admin 2]]></question>
+    <other><![CDATA[N]]></other>
+    <question_order><![CDATA[2]]></question_order>
+    <language><![CDATA[en]]></language>
+    <scale_id><![CDATA[0]]></scale_id>
+    <same_default><![CDATA[0]]></same_default>
+   </row>
+   <row>
+    <qid><![CDATA[17]]></qid>
+    <parent_qid><![CDATA[15]]></parent_qid>
+    <sid><![CDATA[447792]]></sid>
+    <gid><![CDATA[8]]></gid>
+    <type><![CDATA[T]]></type>
+    <title><![CDATA[admin2]]></title>
+    <question><![CDATA[Admin 2]]></question>
+    <other><![CDATA[N]]></other>
+    <question_order><![CDATA[2]]></question_order>
+    <language><![CDATA[ar]]></language>
+    <scale_id><![CDATA[0]]></scale_id>
+    <same_default><![CDATA[0]]></same_default>
+   </row>
+   <row>
+    <qid><![CDATA[18]]></qid>
+    <parent_qid><![CDATA[15]]></parent_qid>
+    <sid><![CDATA[447792]]></sid>
+    <gid><![CDATA[8]]></gid>
+    <type><![CDATA[T]]></type>
+    <title><![CDATA[admin3]]></title>
+    <question><![CDATA[Admin 3]]></question>
+    <other><![CDATA[N]]></other>
+    <question_order><![CDATA[3]]></question_order>
+    <language><![CDATA[en]]></language>
+    <scale_id><![CDATA[0]]></scale_id>
+    <same_default><![CDATA[0]]></same_default>
+   </row>
+   <row>
+    <qid><![CDATA[18]]></qid>
+    <parent_qid><![CDATA[15]]></parent_qid>
+    <sid><![CDATA[447792]]></sid>
+    <gid><![CDATA[8]]></gid>
+    <type><![CDATA[T]]></type>
+    <title><![CDATA[admin3]]></title>
+    <question><![CDATA[Admin 3]]></question>
+    <other><![CDATA[N]]></other>
+    <question_order><![CDATA[3]]></question_order>
+    <language><![CDATA[ar]]></language>
+    <scale_id><![CDATA[0]]></scale_id>
+    <same_default><![CDATA[0]]></same_default>
+   </row>
+   <row>
+    <qid><![CDATA[19]]></qid>
+    <parent_qid><![CDATA[15]]></parent_qid>
+    <sid><![CDATA[447792]]></sid>
+    <gid><![CDATA[8]]></gid>
+    <type><![CDATA[T]]></type>
+    <title><![CDATA[admin5]]></title>
+    <question><![CDATA[Admin 5]]></question>
+    <other><![CDATA[N]]></other>
+    <question_order><![CDATA[4]]></question_order>
+    <language><![CDATA[en]]></language>
+    <scale_id><![CDATA[0]]></scale_id>
+    <same_default><![CDATA[0]]></same_default>
+   </row>
+   <row>
+    <qid><![CDATA[19]]></qid>
+    <parent_qid><![CDATA[15]]></parent_qid>
+    <sid><![CDATA[447792]]></sid>
+    <gid><![CDATA[8]]></gid>
+    <type><![CDATA[T]]></type>
+    <title><![CDATA[admin5]]></title>
+    <question><![CDATA[Admin 5]]></question>
+    <other><![CDATA[N]]></other>
+    <question_order><![CDATA[4]]></question_order>
+    <language><![CDATA[ar]]></language>
+    <scale_id><![CDATA[0]]></scale_id>
+    <same_default><![CDATA[0]]></same_default>
+   </row>
+  </rows>
+ </subquestions>
+ <surveys>
+  <fields>
+   <fieldname>sid</fieldname>
+   <fieldname>admin</fieldname>
+   <fieldname>expires</fieldname>
+   <fieldname>startdate</fieldname>
+   <fieldname>adminemail</fieldname>
+   <fieldname>anonymized</fieldname>
+   <fieldname>faxto</fieldname>
+   <fieldname>format</fieldname>
+   <fieldname>savetimings</fieldname>
+   <fieldname>template</fieldname>
+   <fieldname>language</fieldname>
+   <fieldname>additional_languages</fieldname>
+   <fieldname>datestamp</fieldname>
+   <fieldname>usecookie</fieldname>
+   <fieldname>allowregister</fieldname>
+   <fieldname>allowsave</fieldname>
+   <fieldname>autonumber_start</fieldname>
+   <fieldname>autoredirect</fieldname>
+   <fieldname>allowprev</fieldname>
+   <fieldname>printanswers</fieldname>
+   <fieldname>ipaddr</fieldname>
+   <fieldname>refurl</fieldname>
+   <fieldname>publicstatistics</fieldname>
+   <fieldname>publicgraphs</fieldname>
+   <fieldname>listpublic</fieldname>
+   <fieldname>htmlemail</fieldname>
+   <fieldname>sendconfirmation</fieldname>
+   <fieldname>tokenanswerspersistence</fieldname>
+   <fieldname>assessments</fieldname>
+   <fieldname>usecaptcha</fieldname>
+   <fieldname>usetokens</fieldname>
+   <fieldname>bounce_email</fieldname>
+   <fieldname>attributedescriptions</fieldname>
+   <fieldname>emailresponseto</fieldname>
+   <fieldname>emailnotificationto</fieldname>
+   <fieldname>tokenlength</fieldname>
+   <fieldname>showxquestions</fieldname>
+   <fieldname>showgroupinfo</fieldname>
+   <fieldname>shownoanswer</fieldname>
+   <fieldname>showqnumcode</fieldname>
+   <fieldname>bouncetime</fieldname>
+   <fieldname>bounceprocessing</fieldname>
+   <fieldname>bounceaccounttype</fieldname>
+   <fieldname>bounceaccounthost</fieldname>
+   <fieldname>bounceaccountpass</fieldname>
+   <fieldname>bounceaccountencryption</fieldname>
+   <fieldname>bounceaccountuser</fieldname>
+   <fieldname>showwelcome</fieldname>
+   <fieldname>showprogress</fieldname>
+   <fieldname>questionindex</fieldname>
+   <fieldname>navigationdelay</fieldname>
+   <fieldname>nokeyboard</fieldname>
+   <fieldname>alloweditaftercompletion</fieldname>
+   <fieldname>googleanalyticsstyle</fieldname>
+   <fieldname>googleanalyticsapikey</fieldname>
+  </fields>
+  <rows>
+   <row>
+    <sid><![CDATA[447792]]></sid>
+    <admin><![CDATA[Denis Chenu]]></admin>
+    <adminemail><![CDATA[dchenu@gsill.net]]></adminemail>
+    <anonymized><![CDATA[N]]></anonymized>
+    <faxto/>
+    <format><![CDATA[G]]></format>
+    <savetimings><![CDATA[N]]></savetimings>
+    <template><![CDATA[default]]></template>
+    <language><![CDATA[en]]></language>
+    <additional_languages><![CDATA[ar ]]></additional_languages>
+    <datestamp><![CDATA[N]]></datestamp>
+    <usecookie><![CDATA[N]]></usecookie>
+    <allowregister><![CDATA[N]]></allowregister>
+    <allowsave><![CDATA[Y]]></allowsave>
+    <autonumber_start><![CDATA[2]]></autonumber_start>
+    <autoredirect><![CDATA[N]]></autoredirect>
+    <allowprev><![CDATA[N]]></allowprev>
+    <printanswers><![CDATA[N]]></printanswers>
+    <ipaddr><![CDATA[N]]></ipaddr>
+    <refurl><![CDATA[N]]></refurl>
+    <publicstatistics><![CDATA[N]]></publicstatistics>
+    <publicgraphs><![CDATA[N]]></publicgraphs>
+    <listpublic><![CDATA[N]]></listpublic>
+    <htmlemail><![CDATA[Y]]></htmlemail>
+    <sendconfirmation><![CDATA[Y]]></sendconfirmation>
+    <tokenanswerspersistence><![CDATA[N]]></tokenanswerspersistence>
+    <assessments><![CDATA[N]]></assessments>
+    <usecaptcha><![CDATA[D]]></usecaptcha>
+    <usetokens><![CDATA[N]]></usetokens>
+    <bounce_email><![CDATA[dchenu@gsill.net]]></bounce_email>
+    <emailresponseto/>
+    <emailnotificationto/>
+    <tokenlength><![CDATA[15]]></tokenlength>
+    <showxquestions><![CDATA[Y]]></showxquestions>
+    <showgroupinfo><![CDATA[B]]></showgroupinfo>
+    <shownoanswer><![CDATA[Y]]></shownoanswer>
+    <showqnumcode><![CDATA[X]]></showqnumcode>
+    <bounceprocessing><![CDATA[N]]></bounceprocessing>
+    <showwelcome><![CDATA[Y]]></showwelcome>
+    <showprogress><![CDATA[Y]]></showprogress>
+    <questionindex><![CDATA[0]]></questionindex>
+    <navigationdelay><![CDATA[0]]></navigationdelay>
+    <nokeyboard><![CDATA[N]]></nokeyboard>
+    <alloweditaftercompletion><![CDATA[N]]></alloweditaftercompletion>
+    <googleanalyticsstyle><![CDATA[0]]></googleanalyticsstyle>
+    <googleanalyticsapikey/>
+   </row>
+  </rows>
+ </surveys>
+ <surveys_languagesettings>
+  <fields>
+   <fieldname>surveyls_survey_id</fieldname>
+   <fieldname>surveyls_language</fieldname>
+   <fieldname>surveyls_title</fieldname>
+   <fieldname>surveyls_description</fieldname>
+   <fieldname>surveyls_welcometext</fieldname>
+   <fieldname>surveyls_endtext</fieldname>
+   <fieldname>surveyls_url</fieldname>
+   <fieldname>surveyls_urldescription</fieldname>
+   <fieldname>surveyls_email_invite_subj</fieldname>
+   <fieldname>surveyls_email_invite</fieldname>
+   <fieldname>surveyls_email_remind_subj</fieldname>
+   <fieldname>surveyls_email_remind</fieldname>
+   <fieldname>surveyls_email_register_subj</fieldname>
+   <fieldname>surveyls_email_register</fieldname>
+   <fieldname>surveyls_email_confirm_subj</fieldname>
+   <fieldname>surveyls_email_confirm</fieldname>
+   <fieldname>surveyls_dateformat</fieldname>
+   <fieldname>surveyls_attributecaptions</fieldname>
+   <fieldname>email_admin_notification_subj</fieldname>
+   <fieldname>email_admin_notification</fieldname>
+   <fieldname>email_admin_responses_subj</fieldname>
+   <fieldname>email_admin_responses</fieldname>
+   <fieldname>surveyls_numberformat</fieldname>
+   <fieldname>attachments</fieldname>
+  </fields>
+  <rows>
+   <row>
+    <surveyls_survey_id><![CDATA[447792]]></surveyls_survey_id>
+    <surveyls_language><![CDATA[ar]]></surveyls_language>
+    <surveyls_title/>
+    <surveyls_url/>
+    <surveyls_email_invite_subj><![CDATA[دعوة للمشاركة في استبيان]]></surveyls_email_invite_subj>
+    <surveyls_email_invite><![CDATA[عزيزنا {FIRSTNAME},<br />
+<br />
+لقد تمت دعوتك للمشاركة في استبيان(استطلاع).<br />
+<br />
+عنوان الاستبيان هو:<br />
+"{SURVEYNAME}"<br />
+<br />
+"{SURVEYDESCRIPTION}"<br />
+<br />
+لكي تشارك اضغط على الرابط أدناه.<br />
+<br />
+أطيب التحيات,<br />
+<br />
+{ADMINNAME} ({ADMINEMAIL})<br />
+<br />
+----------------------------------------------<br />
+اضغط هنا لتشارك في الاستبيان:<br />
+{SURVEYURL}<br />
+<br />
+لو انك لا تريد المشاركة في هذا الاستبيان و لا تريد ان تستقبل المزيد من الدعوات اضغط علي العنوان الاتي: <br />
+{OPTOUTURL}<br />
+<br />
+If you are blacklisted but want to participate in this survey and want to receive invitations please click the following link:<br />
+{OPTINURL}]]></surveyls_email_invite>
+    <surveyls_email_remind_subj><![CDATA[تذكير بالمشاركة في الاستبيان]]></surveyls_email_remind_subj>
+    <surveyls_email_remind><![CDATA[عزيزنا" الاسم الأول"، /n/nلقد دعوناك مؤخرا للمشاركة في استبيان./n/nلاحظنا أنك لم تكمل الاستبيان حتى الآن، ونتمنى أن نذكرك بأن الاستبيان ما زال متاحاهل ترغب في المشاركة./n/nعنوان الاستبيان:/n" اسم الاستبيان" /n/n/" وصف الاستبيان"/ /n/nللمشاركة، من فضلك اضغط على الرابط الموجود بالأسفل./n/nالمخلص،/n/nاسم المدير" " بريده الإلكتروني"/n/n----------------------------------------------<br />
+اضغط هنا لتعمل استبيانا:/n" عنوان صفحة الويب الخاص بالاستبيان"<br />
+<br />
+لو انك لا تريد المشاركة في هذا الاستبيان و لا تريد ان تستقبل المزيد من الدعوات اضغط علي العنوان الاتي: <br />
+{OPTOUTURL}]]></surveyls_email_remind>
+    <surveyls_email_register_subj><![CDATA[تأكيد تسجيل الاستبيان]]></surveyls_email_register_subj>
+    <surveyls_email_register><![CDATA[عزيزي {FIRSTNAME},<br />
+<br />
+لقد قمت، أو قام شخص بإستخدام بريدك الإليكتروني لتسجيلك للمشاركة في الإستبيان  {SURVEYNAME}.<br />
+<br />
+لإكمال الإستبيان، انقر على هذا الرابط:<br />
+<br />
+{SURVEYURL}<br />
+<br />
+إن كان لديك اي تساؤل حول هذه الإستبيان او إذا لم تطلب التسجيل، يمكنك الإتصال ب {ADMINNAME} على هذا العنوان {ADMINEMAIL}.]]></surveyls_email_register>
+    <surveyls_email_confirm_subj><![CDATA[تأكيد مشاركتك في استبياننا]]></surveyls_email_confirm_subj>
+    <surveyls_email_confirm><![CDATA[عزيزي {FIRSTNAME},<br />
+<br />
+إن هذه الرسالة تؤكد انك انهيت الإستبانة المعنونة  {SURVEYNAME} وتم حفظ الأجوبة. شكراً لإشتراكك.<br />
+<br />
+إن كان عندك اي سؤال عن هذه الرسالة, يمكنك الإتصال ب   {ADMINNAME}  علي  {ADMINEMAIL}.<br />
+<br />
+شكراً لك ,<br />
+<br />
+{ADMINNAME}]]></surveyls_email_confirm>
+    <surveyls_dateformat><![CDATA[2]]></surveyls_dateformat>
+    <email_admin_notification_subj><![CDATA[تقديم الإجابة للاستبيان {SURVEYNAME}]]></email_admin_notification_subj>
+    <email_admin_notification><![CDATA[اهلا, <br />
+<br />
+اجابات جديدة قد تم اضافتها لهذا الاستبيان '{SURVEYNAME}'.<br />
+<br />
+اضغط علي العنوان الاتي لاعادة تحميل الاستبيان:<br />
+{RELOADURL}<br />
+<br />
+اضغط علي العنوان الاتي لروئية الاجابات المنفردة:<br />
+{VIEWRESPONSEURL}<br />
+<br />
+اضغط علي العنوان الاتي لتعديل الاجابات المنفردة:<br />
+{VIEWRESPONSEURL}<br />
+<br />
+شاهد الاحصائيات بالضغط هنا:<br />
+{STATISTICSURL}]]></email_admin_notification>
+    <email_admin_responses_subj><![CDATA[الاجابات تقدم لاستبيان {SURVEYNAME} مع النتائج]]></email_admin_responses_subj>
+    <email_admin_responses><![CDATA[اهلا, <br />
+<br />
+اجابات جديدة قد تم اضافتها لهذا الاستبيان '{SURVEYNAME}'.<br />
+<br />
+اضغط علي العنوان الاتي لاعادة تحميل الاستبيان:<br />
+{RELOADURL}<br />
+<br />
+اضغط علي العنوان الاتي لروئية الاجابات المنفردة:<br />
+{VIEWRESPONSEURL}<br />
+<br />
+اضغط علي العنوان الاتي لتعديل الاجابات المنفردة:<br />
+{VIEWRESPONSEURL}<br />
+<br />
+شاهد الاحصائيات بالضغط هنا:<br />
+{STATISTICSURL}<br />
+<br />
+<br />
+الاجابات الاتية جمعت من المشاركات:<br />
+{ANSWERTABLE}]]></email_admin_responses>
+    <surveyls_numberformat><![CDATA[0]]></surveyls_numberformat>
+   </row>
+   <row>
+    <surveyls_survey_id><![CDATA[447792]]></surveyls_survey_id>
+    <surveyls_language><![CDATA[en]]></surveyls_language>
+    <surveyls_title><![CDATA[Arcgis test]]></surveyls_title>
+    <surveyls_description/>
+    <surveyls_welcometext/>
+    <surveyls_endtext/>
+    <surveyls_url/>
+    <surveyls_urldescription/>
+    <surveyls_email_invite_subj><![CDATA[Invitation to participate in a survey]]></surveyls_email_invite_subj>
+    <surveyls_email_invite><![CDATA[Dear {FIRSTNAME},<br />
+<br />
+you have been invited to participate in a survey.<br />
+<br />
+The survey is titled:<br />
+"{SURVEYNAME}"<br />
+<br />
+"{SURVEYDESCRIPTION}"<br />
+<br />
+To participate, please click on the link below.<br />
+<br />
+Sincerely,<br />
+<br />
+{ADMINNAME} ({ADMINEMAIL})<br />
+<br />
+----------------------------------------------<br />
+Click here to do the survey:<br />
+{SURVEYURL}<br />
+<br />
+If you do not want to participate in this survey and don't want to receive any more invitations please click the following link:<br />
+{OPTOUTURL}<br />
+<br />
+If you are blacklisted but want to participate in this survey and want to receive invitations please click the following link:<br />
+{OPTINURL}]]></surveyls_email_invite>
+    <surveyls_email_remind_subj><![CDATA[Reminder to participate in a survey]]></surveyls_email_remind_subj>
+    <surveyls_email_remind><![CDATA[Dear {FIRSTNAME},<br />
+<br />
+Recently we invited you to participate in a survey.<br />
+<br />
+We note that you have not yet completed the survey, and wish to remind you that the survey is still available should you wish to take part.<br />
+<br />
+The survey is titled:<br />
+"{SURVEYNAME}"<br />
+<br />
+"{SURVEYDESCRIPTION}"<br />
+<br />
+To participate, please click on the link below.<br />
+<br />
+Sincerely,<br />
+<br />
+{ADMINNAME} ({ADMINEMAIL})<br />
+<br />
+----------------------------------------------<br />
+Click here to do the survey:<br />
+{SURVEYURL}<br />
+<br />
+If you do not want to participate in this survey and don't want to receive any more invitations please click the following link:<br />
+{OPTOUTURL}]]></surveyls_email_remind>
+    <surveyls_email_register_subj><![CDATA[Survey registration confirmation]]></surveyls_email_register_subj>
+    <surveyls_email_register><![CDATA[Dear {FIRSTNAME},<br />
+<br />
+You, or someone using your email address, have registered to participate in an online survey titled {SURVEYNAME}.<br />
+<br />
+To complete this survey, click on the following URL:<br />
+<br />
+{SURVEYURL}<br />
+<br />
+If you have any questions about this survey, or if you did not register to participate and believe this email is in error, please contact {ADMINNAME} at {ADMINEMAIL}.]]></surveyls_email_register>
+    <surveyls_email_confirm_subj><![CDATA[Confirmation of your participation in our survey]]></surveyls_email_confirm_subj>
+    <surveyls_email_confirm><![CDATA[Dear {FIRSTNAME},<br />
+<br />
+this email is to confirm that you have completed the survey titled {SURVEYNAME} and your response has been saved. Thank you for participating.<br />
+<br />
+If you have any further questions about this email, please contact {ADMINNAME} on {ADMINEMAIL}.<br />
+<br />
+Sincerely,<br />
+<br />
+{ADMINNAME}]]></surveyls_email_confirm>
+    <surveyls_dateformat><![CDATA[5]]></surveyls_dateformat>
+    <email_admin_notification_subj><![CDATA[Response submission for survey {SURVEYNAME}]]></email_admin_notification_subj>
+    <email_admin_notification><![CDATA[Hello,<br />
+<br />
+A new response was submitted for your survey '{SURVEYNAME}'.<br />
+<br />
+Click the following link to reload the survey:<br />
+{RELOADURL}<br />
+<br />
+Click the following link to see the individual response:<br />
+{VIEWRESPONSEURL}<br />
+<br />
+Click the following link to edit the individual response:<br />
+{EDITRESPONSEURL}<br />
+<br />
+View statistics by clicking here:<br />
+{STATISTICSURL}]]></email_admin_notification>
+    <email_admin_responses_subj><![CDATA[Response submission for survey {SURVEYNAME} with results]]></email_admin_responses_subj>
+    <email_admin_responses><![CDATA[Hello,<br />
+<br />
+A new response was submitted for your survey '{SURVEYNAME}'.<br />
+<br />
+Click the following link to reload the survey:<br />
+{RELOADURL}<br />
+<br />
+Click the following link to see the individual response:<br />
+{VIEWRESPONSEURL}<br />
+<br />
+Click the following link to edit the individual response:<br />
+{EDITRESPONSEURL}<br />
+<br />
+View statistics by clicking here:<br />
+{STATISTICSURL}<br />
+<br />
+<br />
+The following answers were given by the participant:<br />
+{ANSWERTABLE}]]></email_admin_responses>
+    <surveyls_numberformat><![CDATA[1]]></surveyls_numberformat>
+   </row>
+  </rows>
+ </surveys_languagesettings>
+</document>
