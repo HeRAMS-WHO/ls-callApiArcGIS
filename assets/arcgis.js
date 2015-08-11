@@ -10,13 +10,21 @@ function findArcGis(qId,answerId)
 
 function doSelect(answerId,doLevel,searchLevel,searchCode)
 {
-  
+
+  if(typeof searchCode=="undefined" || !searchCode)
+   searchCode="";
   $("#"+answerId+"admin"+doLevel).closest(".answer-item").addClass("search");
   if(searchCode=="" && $("#"+answerId+"admin"+doLevel).val()=="")
   {
     $("#select"+answerId+"admin"+doLevel).remove();
     $("#"+answerId+"admin"+doLevel).val("");
+    for (i = doLevel+1; i < 7; i++) {
+      $("#"+answerId+"admin"+i).val("").trigger("keyup");
+      $("#select"+answerId+"admin"+i).remove();
+    }
+      //return;
   }
+
   $.ajax({
     url: arcgisUrl,
     dataType: "json",
@@ -34,8 +42,7 @@ function doSelect(answerId,doLevel,searchLevel,searchCode)
     });
     if(items.length > 0)
     {
-      var selectedVal=false;
-
+      var selectVal="";
       items.unshift( "<option value=''>" + pleaseChoose + "</option>" );
       $( "<select/>", {
         'id' : "select"+answerId+"admin"+doLevel,
@@ -47,38 +54,50 @@ function doSelect(answerId,doLevel,searchLevel,searchCode)
       }).insertAfter("#"+answerId+"admin"+doLevel);
       if(items.length==2)
       {
-        var selectVal=$("#select"+answerId+"admin"+doLevel).find("option[value!='']").attr('value');
+        selectVal=$("#select"+answerId+"admin"+doLevel).find("option[value!='']").attr('value');
         $("#select"+answerId+"admin"+doLevel).val(selectVal).trigger("change");
       }
-      if($("#"+answerId+"admin"+doLevel).val()!="")
+      if(selectVal=="" && $("#"+answerId+"admin"+doLevel).val()!="")
       {
-        var selectVal=$("#"+answerId+"admin"+doLevel).val().trim();
-        if($("#select"+answerId+"admin"+doLevel).find("option[value!='"+selectVal+"']").length){
+        selectVal=$("#"+answerId+"admin"+doLevel).val().trim();
+        if(selectVal!='none' && $("#select"+answerId+"admin"+doLevel).find("option[value='"+selectVal+"']").length)
+        {
           $("#select"+answerId+"admin"+doLevel).val(selectVal).trigger("change");
         }else{
-          $("#"+answerId+"admin"+doLevel).val("");
-          $("#select"+answerId+"admin"+doLevel).val("").trigger("change");
-          $("#select"+answerId+"admin"+doLevel+" option:first").prop('selected',true);
+            selectVal="";
         }
+      }
+      if(selectVal==""){
+          $("#"+answerId+"admin"+doLevel).val("").trigger("keyup");
+          //$("#select"+answerId+"admin"+doLevel).val("").trigger("change");
+          $("#select"+answerId+"admin"+doLevel+" option:first").prop('selected',true);
+          for (i = doLevel+1; i < 7; i++) {
+            $("#select"+answerId+"admin"+i).remove();
+            $("#"+answerId+"admin"+i).val("").trigger("keyup");
+          }
       }
     }
     else
     {
-      $("#"+answerId+"admin"+doLevel).val("none");
+      $("#"+answerId+"admin"+doLevel).val("none").trigger("keyup");
+      for (i = doLevel+1; i < 7; i++) {
+        $("#"+answerId+"admin"+i).val("none").trigger("keyup");
+      }
     }
     $("#"+answerId+"admin"+doLevel).closest(".answer-item").removeClass("search");
-
   });
 }
 $(document).on("change","select.arcgisdropdown[data-update]",function(){
   $("#"+$(this).data("update")).val($(this).val()).trigger("keyup");
   var nextLevel=$(this).data("level")+1;
   var answerId=$(this).data("answerid");
-  while (nextLevel < 6 && $("#"+answerId+"admin"+nextLevel).length==0) {
+  while (nextLevel < 7 && $("#"+answerId+"admin"+nextLevel).length==0) {
     nextLevel++;
+
   }
   if($("#"+answerId+"admin"+nextLevel).length)
   {
       doSelect(answerId,nextLevel,$(this).data("level"),$(this).val());
+      //return;
   }
 });
