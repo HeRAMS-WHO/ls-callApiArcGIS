@@ -1,11 +1,27 @@
+var argis={
+    "input": [
+        "admin1",
+        "admin2",
+        "admin3",
+        "admin4",
+        "admin5",
+        "pcode"
+    ]
+};
+
 function findArcGis(qId,answerId)
 {
+  var firstLevel=false;
   // Hide the answer text
-  for (i = 0; i < 7; i++) {
-    $("#"+answerId+"admin"+i).hide();
-  }
+  jQuery.each(argis.input, function(index, level){
+    // first level
+    if(!firstLevel && $("#"+answerId+level).length){
+      firstLevel = level;
+    }
+    $("#"+answerId+level).hide();
+  });
   // Always replace first
-  doSelect(answerId,1,0,0);
+  doSelect(answerId,firstLevel,0,0);
 }
 
 function doSelect(answerId,doLevel,searchLevel,searchCode)
@@ -13,18 +29,21 @@ function doSelect(answerId,doLevel,searchLevel,searchCode)
 
   if(typeof searchCode=="undefined" || !searchCode)
    searchCode="";
-  $("#"+answerId+"admin"+doLevel).closest(".answer-item").addClass("search");
-  if(searchCode=="" && $("#"+answerId+"admin"+doLevel).val()=="")
+  $("#"+answerId+doLevel).closest(".answer-item").addClass("search");
+  if(searchCode=="" && $("#"+answerId+doLevel).val()=="")
   {
-    $("#select"+answerId+"admin"+doLevel).remove();
-    $("#"+answerId+"admin"+doLevel).val("");
-    for (i = doLevel+1; i < 7; i++) {
-      $("#"+answerId+"admin"+i).val("").trigger("keyup");
-      $("#select"+answerId+"admin"+i).remove();
-    }
+    $("#select"+answerId+doLevel).remove();
+    $("#"+answerId+doLevel).val("");
+    jQuery.each(argis.input, function(index, level)
+    {
+      $("#"+answerId+level).val("").trigger("keyup");
+      $("#select"+answerId+level).remove();
+    });
       //return;
   }
-
+var baseIputName=answerId+doLevel;
+var isUp=false;
+var selectToUse=false;
   $.ajax({
     url: arcgisUrl,
     dataType: "json",
@@ -35,7 +54,7 @@ function doSelect(answerId,doLevel,searchLevel,searchCode)
     }
   })
   .success(function( data ) {
-    $("#select"+answerId+"admin"+doLevel).remove();
+    $("#select"+baseIputName).remove();
     var items = [];
     $.each( data, function( key, val ) {
       items.push( "<option value='" + key + "'>" + val + "</option>" );
@@ -45,59 +64,98 @@ function doSelect(answerId,doLevel,searchLevel,searchCode)
       var selectVal="";
       items.unshift( "<option value=''>" + pleaseChoose + "</option>" );
       $( "<select/>", {
-        'id' : "select"+answerId+"admin"+doLevel,
+        'id' : "select"+baseIputName,
         'class' : 'arcgisdropdown',
-        'data-update' : answerId+"admin"+doLevel,
+        'data-update' : baseIputName,
         'data-level' : doLevel,
         'data-answerid' : answerId,
         html: items.join( "" )
-      }).insertAfter("#"+answerId+"admin"+doLevel);
+      }).insertAfter("#"+baseIputName);
       if(items.length==2)
       {
-        selectVal=$("#select"+answerId+"admin"+doLevel).find("option[value!='']").attr('value');
-        $("#select"+answerId+"admin"+doLevel).val(selectVal).trigger("change");
+        selectVal=$("#select"+baseIputName).find("option[value!='']").attr('value');
+        $("#select"+baseIputName).val(selectVal).trigger("change");
       }
-      if(selectVal=="" && $("#"+answerId+"admin"+doLevel).val()!="")
+      if(selectVal=="" && $("#"+baseIputName).val()!="")
       {
-        selectVal=$("#"+answerId+"admin"+doLevel).val().trim();
-        if(selectVal!='none' && $("#select"+answerId+"admin"+doLevel).find("option[value='"+selectVal+"']").length)
+        selectVal=$("#"+baseIputName).val().trim();
+        if(selectVal!='none' && $("#select"+baseIputName).find("option[value='"+selectVal+"']").length)
         {
-          $("#select"+answerId+"admin"+doLevel).val(selectVal).trigger("change");
+          $("#select"+baseIputName).val(selectVal).trigger("change");
         }else{
             selectVal="";
         }
       }
       if(selectVal==""){
-          $("#"+answerId+"admin"+doLevel).val("").trigger("keyup");
+          $("#"+answerId+baseIputName).val("").trigger("keyup");
           //$("#select"+answerId+"admin"+doLevel).val("").trigger("change");
-          $("#select"+answerId+"admin"+doLevel+" option:first").prop('selected',true);
-          for (i = doLevel+1; i < 7; i++) {
-            $("#select"+answerId+"admin"+i).remove();
-            $("#"+answerId+"admin"+i).val("").trigger("keyup");
-          }
+          $("#select"+baseIputName+" option:first").prop('selected',true);
+          isUp=false;
+          jQuery.each(argis.input, function(index, level)
+          {
+            if(isUp)
+            {
+              $("#select"+answerId+level).remove();
+              $("#"+answerId+level).val("").trigger("keyup");
+            }
+            else if(level==doLevel)
+            {
+              isUp=true;
+            }
+          });
       }
     }
     else
     {
-      $("#"+answerId+"admin"+doLevel).val("none").trigger("keyup");
-      for (i = doLevel+1; i < 7; i++) {
-        $("#"+answerId+"admin"+i).val("none").trigger("keyup");
-      }
+      $("#"+baseIputName).val("none").trigger("keyup");
+      selectToUse=false;
+      isUp=false;
+      jQuery.each(argis.input, function(index, level)
+      {
+        if(!isUp && $("#select"+answerId+level).length)
+        {
+          selectToUse=$("#select"+answerId+level);
+        }
+        if(isUp && $("#"+answerId+level).length && selectToUse)
+        {
+          doSelect(answerId,level,$(selectToUse).data('level'),$(selectToUse).val());
+          return false;
+        }
+        if(level==doLevel)
+        {
+          isUp=true;
+        }
+      });
     }
-    $("#"+answerId+"admin"+doLevel).closest(".answer-item").removeClass("search");
+    $("#"+baseIputName).closest(".answer-item").removeClass("search");
   });
 }
 $(document).on("change","select.arcgisdropdown[data-update]",function(){
-  $("#"+$(this).data("update")).val($(this).val()).trigger("keyup");
-  var nextLevel=$(this).data("level")+1;
-  var answerId=$(this).data("answerid");
-  while (nextLevel < 7 && $("#"+answerId+"admin"+nextLevel).length==0) {
-    nextLevel++;
 
+  $("#"+$(this).data("update")).val($(this).val()).trigger("keyup");
+  if($(this).data("level")=="pcode"){
+    return;
   }
-  if($("#"+answerId+"admin"+nextLevel).length)
+//  var nextLevel=$(this).data("level")+1;
+  var answerId=$(this).data("answerid");
+  var activeLevel=$(this).data("level");
+  var activeCode=$(this).val();
+  var isUp=false;
+  var isDone=false;
+  jQuery.each(argis.input, function(index, level)
   {
-      doSelect(answerId,nextLevel,$(this).data("level"),$(this).val());
-      //return;
-  }
+    if(isUp)
+    {
+      if($("#"+answerId+level).length)
+      {
+        doSelect(answerId,level,activeLevel,activeCode);
+        return false;
+      }
+    }
+    else if(level==activeLevel)
+    {
+      isUp=true;
+    }
+  });
 });
+

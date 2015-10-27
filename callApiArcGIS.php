@@ -3,8 +3,8 @@
  * htmlEditorAnswers Plugin for LimeSurvey
  *
  * @author Denis Chenu <denis@sondages.pro>
- * @copyright 2015 Denis Chenu <http://sondages.pro>
- * @copyright 2015 WHO | World Health Organization <http://www.who.int>
+ * @copyright 2014-2015 Denis Chenu <http://sondages.pro>
+ * @copyright 2014-2015 WHO | World Health Organization <http://www.who.int>
  * @license GNU AFFERO GENERAL PUBLIC LICENSE Version 3 or later (the "AGPL")
  * @version 1.0
  *
@@ -19,7 +19,6 @@
  * GNU Affero General Public License for more details.
  *
  */
-
 class callApiArcGIS extends PluginBase {
     protected $storage = 'DbStorage';
     
@@ -40,13 +39,14 @@ class callApiArcGIS extends PluginBase {
     );
     private $default=array(
         'countryCode'=>"SY",
-        'countryUrl'=>"SYR_AR",
-        'admin0Url'=>'0',
-        'admin1Url'=>'6',
-        'admin2Url'=>'10',
-        'admin3Url'=>'11',
-        'admin4Url'=>'',
-        'admin5Url'=>'12',
+        'countryUrl'=>"SYR_pcode",
+        'admin0Url'=>'',
+        'admin1Url'=>'2',
+        'admin2Url'=>'3',
+        'admin3Url'=>'4',
+        'admin4Url'=>'5',
+        'admin5Url'=>'',
+        'pcodeUrl'=>'0',
     );
     public function __construct(PluginManager $manager, $id) {
         parent::__construct($manager, $id);
@@ -79,56 +79,81 @@ class callApiArcGIS extends PluginBase {
         $adminLevel=Yii::app()->request->getParam('level',1);
         $levelWhere=Yii::app()->request->getParam('where');
         $levelCode=Yii::app()->request->getParam('code');
-        if($adminLevel==1 || !$levelWhere)
+        if(!$levelWhere)
         {
-            $levelWhere="0";
+            $levelWhere="admin0";
             $levelCode=$this->get('countryCode', 'Survey', $iSurveyId,$this->default['countryCode']);
         }
         $thisUrl=$this->getApiUrl($adminLevel,$levelWhere,$levelCode);
-        $jsonInfo=file_get_contents($thisUrl);
-        $aOptions=array();
+        if($thisUrl)
+        {
+            $jsonInfo=file_get_contents($thisUrl);
+            $aOptions=array();
 
-        $oInfo=json_decode($jsonInfo);
-        if($oInfo && isset($oInfo->features))
-        {    
-            foreach($oInfo->features as $oOptions)
+            $oInfo=json_decode($jsonInfo);
+            if($oInfo && isset($oInfo->features))
             {
-                $oInformations=$oOptions->attributes;
-                $sText="";
-                $attributeLang="admin{$adminLevel}Name_{$sLang}";
-                $attributeDefault="admin{$adminLevel}RefName";
-                $attributeKey="admin{$adminLevel}Pcode";
+                foreach($oInfo->features as $oOptions)
+                {
+                    $oInformations=$oOptions->attributes;
+                    $sText="";
+                    $attributeLang="{$adminLevel}Name_{$sLang}";
+                    $attributeDefault="{$adminLevel}RefName";
+                    $altAttributeLang="featureName_{$sLang}";
+                    $altAttributeDefault="featureRefName";
+                    $attributeKey="{$adminLevel}Pcode";
+                    $altAttributeKey="pcode";
 
-                if(isset($oInformations->$attributeLang))
-                    $sText=$oInformations->$attributeLang;
-                elseif(isset($oInformations->$attributeDefault))
-                    $sText=$oInformations->$attributeDefault;
-                if($sText && isset($oInformations->$attributeKey))
-                    $aOptions[$oInformations->$attributeKey]=$sText;
+                    if(isset($oInformations->$attributeLang))
+                        $sText=$oInformations->$attributeLang;
+                    elseif(isset($oInformations->$attributeDefault))
+                        $sText=$oInformations->$attributeDefault;
+                    elseif(isset($oInformations->$altAttributeLang))
+                        $sText=$oInformations->$altAttributeLang;
+                    elseif(isset($oInformations->$altAttributeDefault))
+                        $sText=$oInformations->$altAttributeDefault;
+                    if($sText)
+                    {
+                        if(isset($oInformations->$attributeKey))
+                            $aOptions[$oInformations->$attributeKey]=$sText;
+                        elseif(isset($oInformations->$altAttributeKey))
+                            $aOptions[$oInformations->$altAttributeKey]=$sText;
+                    }
+                }
             }
         }
-        
+        else{
+          $this->displayJson(array(
+            "status"=>"error",
+            "adminLevel"=>$adminLevel,
+            "levelWhere"=>$levelWhere,
+            "levelCode"=>$levelCode,
+          ));
+        }
         // Add Capital
-        $thisUrl=$this->getApiUrl(0,$levelWhere,$levelCode);
-        $jsonInfo=file_get_contents($thisUrl);
-        $oInfo=json_decode($jsonInfo);
-        if($oInfo && isset($oInfo->features))
-        {    
-            foreach($oInfo->features as $oOptions)
-            {
-                $oInformations=$oOptions->attributes;
-                $sText="";
-                $attributeLang="admin{$adminLevel}Name_{$sLang}";
-                $attributeDefault="admin{$adminLevel}RefName";
-                $attributeKey="admin{$adminLevel}Pcode";
+        $thisUrl=$this->getApiUrl("admin0",$levelWhere,$levelCode);
+        if($thisUrl)
+        {
+          $jsonInfo=file_get_contents($thisUrl);
+          $oInfo=json_decode($jsonInfo);
+          if($oInfo && isset($oInfo->features))
+          {
+              foreach($oInfo->features as $oOptions)
+              {
+                  $oInformations=$oOptions->attributes;
+                  $sText="";
+                  $attributeLang="admin{$adminLevel}Name_{$sLang}";
+                  $attributeDefault="admin{$adminLevel}RefName";
+                  $attributeKey="admin{$adminLevel}Pcode";
 
-                if(isset($oInformations->$attributeLang))
-                    $sText=$oInformations->$attributeLang;
-                elseif(isset($oInformations->$attributeDefault))
-                    $sText=$oInformations->$attributeDefault;
-                if($sText && isset($oInformations->$attributeKey))
-                    $aOptions[$oInformations->$attributeKey]=$sText;
-            }
+                  if(isset($oInformations->$attributeLang))
+                      $sText=$oInformations->$attributeLang;
+                  elseif(isset($oInformations->$attributeDefault))
+                      $sText=$oInformations->$attributeDefault;
+                  if($sText && isset($oInformations->$attributeKey))
+                      $aOptions[$oInformations->$attributeKey]=$sText;
+              }
+          }
         }
         asort($aOptions);
         $this->displayJson($aOptions);
@@ -151,16 +176,20 @@ class callApiArcGIS extends PluginBase {
 
         $htmlList=array();
 
-        if($thisUrl=$this->getApiUrl(1,0,$this->get('countryCode', 'Survey', $oEvent->get('survey'),$this->default['countryCode'])))
+        if($thisUrl=$this->getApiUrl("admin0","admin0",$this->get('countryCode', 'Survey',$oEvent->get('survey'),$this->default['countryCode'])))
+            $htmlList[]=CHtml::tag("li",array(),"<span class='label'>admin0 link</span> : <a href='".$thisUrl."' target='_blank'>".$thisUrl."</a>");
+        if($thisUrl=$this->getApiUrl("admin1","admin0",$this->get('countryCode', 'Survey',$oEvent->get('survey'),$this->default['countryCode'])))
             $htmlList[]=CHtml::tag("li",array(),"<span class='label'>admin1 link</span> : <a href='".$thisUrl."' target='_blank'>".$thisUrl."</a>");
-        if($thisUrl=$this->getApiUrl(2,0,$this->get('countryCode', 'Survey', $oEvent->get('survey'),$this->default['countryCode'])))
+        if($thisUrl=$this->getApiUrl("admin2","admin0",$this->get('countryCode', 'Survey', $oEvent->get('survey'),$this->default['countryCode'])))
             $htmlList[]=CHtml::tag("li",array(),"<span class='label'>admin2 link</span> : <a href='".$thisUrl."' target='_blank'>".$thisUrl."</a>");
-        if($thisUrl=$this->getApiUrl(3,0,$this->get('countryCode', 'Survey', $oEvent->get('survey'),$this->default['countryCode'])))
+        if($thisUrl=$this->getApiUrl("admin3","admin0",$this->get('countryCode', 'Survey', $oEvent->get('survey'),$this->default['countryCode'])))
             $htmlList[]=CHtml::tag("li",array(),"<span class='label'>admin3 link</span> : <a href='".$thisUrl."' target='_blank'>".$thisUrl."</a>");
-        if($thisUrl=$this->getApiUrl(4,0,$this->get('countryCode', 'Survey', $oEvent->get('survey'),$this->default['countryCode'])))
+        if($thisUrl=$this->getApiUrl("admin4","admin0",$this->get('countryCode', 'Survey', $oEvent->get('survey'),$this->default['countryCode'])))
             $htmlList[]=CHtml::tag("li",array(),"<span class='label'>admin4 link</span> : <a href='".$thisUrl."' target='_blank'>".$thisUrl."</a>");
-        if($thisUrl=$this->getApiUrl(5,0,$this->get('countryCode', 'Survey', $oEvent->get('survey'),$this->default['countryCode'])))
+        if($thisUrl=$this->getApiUrl("admin5","admin0",$this->get('countryCode', 'Survey', $oEvent->get('survey'),$this->default['countryCode'])))
             $htmlList[]=CHtml::tag("li",array(),"<span class='label'>admin5 link</span> : <a href='".$thisUrl."' target='_blank'>".$thisUrl."</a>");
+        if($thisUrl=$this->getApiUrl("pcode","admin0",$this->get('countryCode', 'Survey', $oEvent->get('survey'),$this->default['countryCode'])))
+            $htmlList[]=CHtml::tag("li",array(),"<span class='label'>Populated place link</span> : <a href='".$thisUrl."' target='_blank'>".$thisUrl."</a>");
         $thisUrl=$this->api->createUrl('plugins/direct', array('plugin' => get_class($this),'function' => 'arcgis'));
         $htmlList[]=CHtml::tag("li",array(),"<span class='label'>directLink</span> : <a href='".$thisUrl."' target='_blank'>".$thisUrl."</a>");
 
@@ -207,6 +236,11 @@ class callApiArcGIS extends PluginBase {
                     'type' => 'string',
                     'label' => 'Database number for admin5',
                     'current'=>$this->get('admin5Url', 'Survey', $oEvent->get('survey'),$this->default['admin5Url']),
+                ),
+                'pcodeUrl'=> array(
+                    'type' => 'string',
+                    'label' => 'Database number for populated place (if needed)',
+                    'current'=>$this->get('pcodeUrl', 'Survey', $oEvent->get('survey'),$this->default['pcodeUrl']),
                 ),
                 'infoUrls'=>array(
                     'type'=>'info',
@@ -271,21 +305,23 @@ class callApiArcGIS extends PluginBase {
             return;
 
         $ApiArcGISbaseUrl=$this->get('ApiArcGISbaseUrl',null,null,$this->settings['ApiArcGISbaseUrl']['default']);
-        $ApiArcGISbaseUrl.=$this->get('countryUrl', 'Survey', $iSurveyId,$this->default['countryUrl'])."/FeatureServer/";
+        $ApiArcGISbaseUrl.=$this->get('countryUrl', 'Survey', $iSurveyId,$this->default['countryUrl'])."/MapServer/";
 
-        $adminLevelUrl=$this->get("admin{$adminLevel}Url", 'Survey', $iSurveyId,$this->default["admin{$adminLevel}Url"]);
+        $adminLevelUrl=$this->get($adminLevel."Url", 'Survey', $iSurveyId,$this->default[$adminLevel."Url"]);
         if($adminLevelUrl=="")
             return;
+
         $baseArray=array(
-            "where"=>"admin{$selectAdminlevel}Pcode = '{$selectAdminlevelCode}'",
+            "where"=>"{$selectAdminlevel}Pcode='{$selectAdminlevelCode}'",
             "outFields"=>"*",
             "returnGeometry"=>"false",
-            "returnDistinctValues"=>"true",
+            "returnDistinctValues"=>"false",
             "f"=>$return,
         );
-        $thisUrl=$ApiArcGISbaseUrl.$this->get("admin{$adminLevel}Url", 'Survey', $iSurveyId,$this->default["admin{$adminLevel}Url"])."/query?";
+        $thisUrl=$ApiArcGISbaseUrl.$adminLevelUrl."/query?";
     
         $thisUrl .= http_build_query($baseArray);
+
         return $thisUrl;
     }
     private function setLanguage()
