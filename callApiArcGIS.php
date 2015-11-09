@@ -6,7 +6,7 @@
  * @copyright 2014-2015 Denis Chenu <http://sondages.pro>
  * @copyright 2014-2015 WHO | World Health Organization <http://www.who.int>
  * @license GNU AFFERO GENERAL PUBLIC LICENSE Version 3 or later (the "AGPL")
- * @version 1.0
+ * @version 1.0.1
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -76,9 +76,10 @@ class callApiArcGIS extends PluginBase {
         $iSurveyId=Yii::app()->session['LEMsid'];
         $oEvent->set('surveyId',$iSurveyId);
         $sLang=Yii::app()->session['LEMlang'];
-        $adminLevel=Yii::app()->request->getParam('level',1);
+        $adminLevel=Yii::app()->request->getParam('level','admin1');
         $levelWhere=Yii::app()->request->getParam('where');
         $levelCode=Yii::app()->request->getParam('code');
+
         if(!$levelWhere)
         {
             $levelWhere="admin0";
